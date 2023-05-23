@@ -194,21 +194,21 @@ void ReservationManager::login(int userType)
     {
         // show menu
         this->clearScreen();
-        person->loadReservation(&vAllReservations, &reservationChangeCounter);
-        person->setComputerRoom(&vCom);
+        person->setReservation(&m_MapAllReservations, &m_VRevChangeCounter);
+        person->setComputerRoom(&m_MapComputers);
         person->operationMenu();
     }
 }
 
 void ReservationManager::saveReservations()
 {
-    if (this->reservationChangeCounter.size() == 0)
+    if (this->m_VRevChangeCounter.size() == 0)
     {
         cout << "No change was made to reservation" << endl;
         return;
     }
     ofstream ofs;
-    if (0 == vAllReservations.size())
+    if (0 == m_MapAllReservations.size())
     {
         ofs.open(RESERVATION_FILE, ios::trunc);
     }
@@ -222,7 +222,7 @@ void ReservationManager::saveReservations()
         cout << "File \"" << RESERVATION_FILE << "\" open error!" << endl;
         return;
     }
-    for (map<int, Reservation>::iterator it = vAllReservations.begin(); it != vAllReservations.end(); it++)
+    for (map<int, Reservation>::iterator it = m_MapAllReservations.begin(); it != m_MapAllReservations.end(); it++)
     {
         ofs << (*it).first << " "
             << (*it).second.getDate() << " "
@@ -237,7 +237,7 @@ void ReservationManager::saveReservations()
 
 void ReservationManager::loadReservations()
 {
-    vAllReservations.clear();
+    m_MapAllReservations.clear();
     // get all reservations
     Reservation r;
     int r_id;
@@ -278,7 +278,7 @@ void ReservationManager::loadReservations()
         {
             r.setStatus(ReservationStatus::approved);
         }
-        else if(r_status == 2)
+        else if (r_status == 2)
         {
             r.setStatus(ReservationStatus::cancelled);
         }
@@ -286,13 +286,13 @@ void ReservationManager::loadReservations()
         {
             r.setStatus(ReservationStatus::rejected);
         }
-        vAllReservations.insert(make_pair(r_id, r));
+        m_MapAllReservations.insert(make_pair(r_id, r));
     }
 }
 
 void ReservationManager::getComputerRooms()
 {
-    this->vCom.clear();
+    this->m_MapComputers.clear();
     ifstream ifs;
     ComputerRoom cr;
 
@@ -304,7 +304,7 @@ void ReservationManager::getComputerRooms()
     }
     while (ifs >> cr.m_roomID && ifs >> cr.m_maxCap && ifs >> cr.m_leftSeats)
     {
-        vCom.insert(make_pair(cr.m_roomID, cr));
+        m_MapComputers.insert(make_pair(cr.m_roomID, cr));
     }
     ifs.close();
 }
@@ -312,7 +312,7 @@ void ReservationManager::getComputerRooms()
 void ReservationManager::saveComputerRooms()
 {
     ofstream ofs;
-    if (0 == vCom.size())
+    if (0 == m_MapComputers.size())
     {
         ofs.open(COMPUTER_FILE, ios::trunc);
     }
@@ -326,7 +326,7 @@ void ReservationManager::saveComputerRooms()
         cout << "File \"" << COMPUTER_FILE << "\" open error!" << endl;
         return;
     }
-    for (map<int, ComputerRoom>::iterator it = vCom.begin(); it != vCom.end(); it++)
+    for (map<int, ComputerRoom>::iterator it = m_MapComputers.begin(); it != m_MapComputers.end(); it++)
     {
         ofs << (*it).first << " "
             << (*it).second.m_maxCap << " "

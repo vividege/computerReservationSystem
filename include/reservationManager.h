@@ -13,9 +13,9 @@ class ReservationManager
 public:
     void start();
 
-    map<int, Reservation> vAllReservations;
-    vector<int> reservationChangeCounter;
-    map<int, ComputerRoom> vCom;
+    map<int, Reservation> m_MapAllReservations;
+    vector<int> m_VRevChangeCounter;
+    map<int, ComputerRoom> m_MapComputers;
 
 private:
     void showMenu();

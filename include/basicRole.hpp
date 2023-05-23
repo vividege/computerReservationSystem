@@ -44,7 +44,7 @@ public:
             (*it).second.print();
         }
     }
-    void loadReservation(map<int, Reservation> *v, vector<int> *c)
+    void setReservation(map<int, Reservation> *v, vector<int> *c)
     {
         this->mRsv = v;
         this->rChangeCounter = c;
