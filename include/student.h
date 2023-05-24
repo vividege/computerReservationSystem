@@ -15,10 +15,7 @@ public:
         this->m_Name = name;
         this->m_Password = pwd;
     }
-    ~Student()
-    {
-        // cout<<"Delete student "<<m_StuID<<endl;
-    }
+    ~Student() {}
 
     virtual void operationMenu();
     virtual void logout();

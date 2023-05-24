@@ -69,7 +69,7 @@ void Student::applyReservation()
 
     cout << "::::Apply reservation::::" << endl;
     cout << "Computer room open day: Monday - Friday." << endl;
-    cout<<"Input the day for reservation: \n[1]. Monday, [2]. Tuesday, [3]. Wednesday, [4]. Thursday, [5]. Friday"<<endl;
+    cout << "Input the day for reservation: \n1. Monday, 2. Tuesday, 3. Wednesday, 4. Thursday, 5. Friday" << endl;
     cin >> r_date;
     cout << "Input time for reservation:\n1. morning\n2.afternoon" << endl;
     cin >> tmp_time;
@@ -96,7 +96,7 @@ void Student::applyReservation()
     }
     else
     {
-        cout<< "Room ["<<room<<"] has no seat for reservation. Select another room to reserve."<<endl;
+        cout << "Room [" << room << "] has no seat for reservation. Select another room to reserve." << endl;
     }
 }
 bool Student::showMyReservation()
@@ -127,6 +127,7 @@ void Student::cancelReservation()
     cout << ":::::::::: Cancel Reservations ::::::::::" << endl;
     if (!showMyReservation())
     {
+        cout << "\nYou don't have a reservation yet.\n";
         return;
     }
     map<int, Reservation>::iterator it;
@@ -135,26 +136,21 @@ void Student::cancelReservation()
     {
         cout << "\nPlease input Reservation ID to cancel, input 0 to back:\n";
         cin >> rid;
-        it = mRsv->find(rid);
         if (0 == rid)
         {
             return;
         }
-        if (it == mRsv->end() || (*it).second.getOwnerID() != this->m_StuID)
+        it = mRsv->find(rid);
+        if (it == mRsv->end() || (*it).second.getOwnerID() != this->m_StuID || (*it).second.getStatus() == ReservationStatus::cancelled)
         {
-            cout << "Invalid reservation ID, please confirm and input again:" << endl;
+            cout << "Invalid reservation ID or reservation is already cancelled, please confirm and input again:" << endl;
         }
         else
         {
-            if ((*it).second.getStatus() == ReservationStatus::cancelled)
-            {
-                cout << "Reservation with ID = " << rid << " already has been cancelled" << endl;
-                return;
-            }
             (*it).second.setStatus(ReservationStatus::cancelled);
             this->rChangeCounter->push_back(1);
 
-            //Update room left seat
+            // Update room left seat
             int roomID = (*it).second.getRoom();
             (*mComp->find(roomID)).second.m_leftSeats += 1;
 
