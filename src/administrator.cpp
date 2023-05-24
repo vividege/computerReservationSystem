@@ -5,7 +5,7 @@ void Administrator::operationMenu()
     int selection = 0;
     while (true)
     {
-        cout << "**** Welcome Administrator [" << this->m_Name << "] back!.******************" << endl;
+        cout << "**** Welcome Administrator [" << this->m_Name << "] back!******************" << endl;
         cout << "*                                                        *" << endl;
         cout << "*                   1. Add User                          *" << endl;
         cout << "*                                                        *" << endl;
@@ -264,7 +264,7 @@ void Administrator::readUsersFromVector(int userType)
     }
 }
 
-void Administrator::getExistingUsers()
+void Administrator::loadExistingUsers()
 {
     this->vStu.clear();
     this->vTea.clear();

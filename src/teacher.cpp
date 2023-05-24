@@ -5,7 +5,7 @@ void Teacher::operationMenu()
     int selection = 0;
     while (true)
     {
-        cout << "**** Welcome UESTC Employee [" << this->m_Name << "] back!.******************" << endl;
+        cout << "**** Welcome UESTC Employee [" << this->m_Name << "] back!******************" << endl;
         cout << "*                                                        *" << endl;
         cout << "*                   1. Show All Reservations             *" << endl;
         cout << "*                                                        *" << endl;

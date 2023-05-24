@@ -19,7 +19,7 @@ public:
     {
         this->m_Name = name;
         this->m_Password = pwd;
-        getExistingUsers();
+        loadExistingUsers();
     }
 
     virtual void operationMenu();
@@ -36,6 +36,6 @@ public:
 
 private:
     void readUsersFromVector(int userType);
-    void getExistingUsers();
+    void loadExistingUsers();
     bool isUserExist(int userType, int userID);
 };
