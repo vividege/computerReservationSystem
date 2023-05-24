@@ -27,6 +27,7 @@ public:
     int getDate();
     int getRID();
 
+private:
     string m_OwnerName;
     int m_OwnerID;
     int m_RDate;
