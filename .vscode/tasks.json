@@ -12,7 +12,7 @@
                 "${fileDirname}/src/*.cpp",
                 "-Iinclude",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/bin/${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${fileDirname}"
