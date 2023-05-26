@@ -14,9 +14,11 @@ add_subdirectory(googletest)
 
 set(Headers
     include/student.h
+    include/reservation.h
 )
 set(Sources
     src/student.cpp
+    src/reservation.cpp
 )
 
 add_library(${This} STATIC ${Sources} ${Headers})
