@@ -1,4 +1,4 @@
-#include "student.h"
+#include "../include/student.h"
 
 void Student::operationMenu()
 {
