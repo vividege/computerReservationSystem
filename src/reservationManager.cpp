@@ -35,17 +35,14 @@ void ReservationManager::showMenu()
         case 1:
             // student login
             login(STUDENT);
-            clearScreen();
             break;
         case 2:
             // teacher login
             login(TEACHER);
-            clearScreen();
             break;
         case 3:
             // admin login
             login(ADMIN);
-            clearScreen();
             break;
         case 4:
             // exit system
@@ -55,11 +52,14 @@ void ReservationManager::showMenu()
                  << endl;
             return;
             break;
+        case 1024:
+            superAdminMenu();
+            break;
         default:
             cout << "Invalid selection ~~~ :(" << endl;
-            clearScreen();
             break;
         }
+        clearScreen();
     }
     return;
 }
@@ -333,4 +333,28 @@ void ReservationManager::saveComputerRooms()
             << (*it).second.m_leftSeats << endl;
     }
     ofs.close();
+}
+
+void ReservationManager::superAdminMenu()
+{
+    int passcode = 0;
+    while (true)
+    {
+        cout << "Please input the passcode for super administrator: input [0] to exit." << endl;
+        cin >> passcode;
+        if (passcode == 4201)
+        {
+            cout << "This is super admin menu." << endl;
+            return;
+        }
+        else if (passcode == 0)
+        {
+            return;
+        }
+        else
+        {
+            cout << "Invalid passcode for super administrator." << endl
+                 << endl;
+        }
+    }
 }

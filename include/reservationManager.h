@@ -20,6 +20,7 @@ public:
 private:
     void showMenu();
     void clearScreen();
+    void superAdminMenu();
     void login(int userType);
     bool validateUser(int userType, string username, string passwd, int id = 0);
     void saveReservations();
